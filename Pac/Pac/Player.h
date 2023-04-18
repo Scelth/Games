@@ -16,31 +16,46 @@ public:
 	{
 		frame += 0.01;
 		if (frame > 5)
+		{
 			frame -= 5;
+		}
 
 		ti++;
+
 		if (ti >= 300)
 		{
 			switch (rotate)
 			{
 			case 1:
 				if (TileMap[y][newx + 1] != 'A')
+				{
 					newx += 1;
+				}
+
 				break;
 
 			case 2:
 				if (TileMap[y][newx - 1] != 'A')
+				{
 					newx -= 1;
+				}
+
 				break;
 
 			case 3:
 				if (TileMap[newy - 1][x] != 'A')
+				{
 					newy -= 1;
+				}
+
 				break;
 
 			case 4:
 				if (TileMap[newy + 1][x] != 'A')
+				{
 					newy += 1;
+				}
+
 				break;
 			}
 
@@ -50,10 +65,14 @@ public:
 		if (TileMap[newy][newx] == ' ' || TileMap[newy][newx] == 'B')
 		{
 			if (TileMap[newy][newx] == ' ')
+			{
 				q++;
+			}
 
 			if (TileMap[newy][newx] == '1' || TileMap[newy][newx] == '2' || TileMap[newy][newx] == '3' || TileMap[newy][newx] == '4')
+			{
 				life = false;
+			}
 
 			TileMap[y][x] = 'B';
 
@@ -66,10 +85,14 @@ public:
 		if (newy == 9 && (newx == 0 || newx == 18))
 		{
 			if (newx == 0)
+			{
 				newx = 17;
+			}
 
 			else
+			{
 				newx = 1;
+			}
 
 			TileMap[y][x] = 'B';
 			TileMap[newy][newx] = 'C';

@@ -3,7 +3,6 @@
 #include <time.h>
 #include "Global.h"
 using namespace sf;
-using namespace std;
 
 String TileMap[H] =
 {
@@ -13,13 +12,13 @@ String TileMap[H] =
 	"A        A        A",
 	"A AA A AAAAA A AA A",
 	"A    A   A   A    A",
-	"AAAA AAA A AAA AAAA",
-	"BBBA A       A ABBB",
+	"ABAA AAA A AAA AABA",
+	"ABBA A       A ABBA",
 	"AAAA A AAAAA A AAAA",
-	"BBBB   ABBBA   BBBB",
+	"ABBB   ABBBA   BBBA",
 	"AAAA A AAAAA A AAAA",
-	"BBBA A       A ABBB",
-	"AAAA A AAAAA A AAAA",
+	"ABBA A       A ABBA",
+	"ABAA A AAAAA A AABA",
 	"A        A        A",
 	"A AA AAA A AAA AA A",
 	"A  A     C     A  A",

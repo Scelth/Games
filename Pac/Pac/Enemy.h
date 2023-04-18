@@ -15,7 +15,8 @@ public:
 	void update() {
 		ti++;
 
-		if (ti >= 300) {
+		if (ti >= 300) 
+		{
 			for (int i = 0; i < 4; i++)
 			{
 				rotate[i] = rand() % 4 + 1;
@@ -27,22 +28,34 @@ public:
 				{
 				case 1:
 					if (TileMap[y[i]][newx[i] + 1] != 'A')
+					{
 						newx[i] += 1;
+					}
+
 					break;
 
 				case 2:
 					if (TileMap[y[i]][newx[i] - 1] != 'A')
+					{
 						newx[i] -= 1;
+					}
+
 					break;
 
 				case 3:
 					if (TileMap[newy[i] - 1][x[i]] != 'A')
+					{
 						newy[i] -= 1;
+					}
+
 					break;
 
 				case 4:
 					if (TileMap[newy[i] + 1][x[i]] != 'A')
+					{
 						newy[i] += 1;
+					}
+
 					break;
 				}
 			}
@@ -50,29 +63,44 @@ public:
 			ti = 0;
 		}
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) 
+		{
 			if (TileMap[newy[i]][newx[i]] == ' ' || TileMap[newy[i]][newx[i]] == 'B' || TileMap[newy[i]][newx[i]] == 'C')
 			{
 				if (TileMap[newy[i]][newx[i]] == 'B')
+				{
 					TileMap[y[i]][x[i]] = 'B';
+				}
 
 				else if (TileMap[newy[i]][newx[i]] == ' ')
+				{
 					TileMap[y[i]][x[i]] = ' ';
+				}
 
 				else if (TileMap[newy[i]][newx[i]] == 'C')
+				{ 
 					life = false;
+				}
 
 				if (i == 0)
+				{
 					TileMap[newy[i]][newx[i]] = '1';
+				}
 
 				if (i == 1)
+				{ 
 					TileMap[newy[i]][newx[i]] = '2';
+				}
 
 				if (i == 2)
+				{
 					TileMap[newy[i]][newx[i]] = '3';
+				}
 
 				if (i == 3)
+				{
 					TileMap[newy[i]][newx[i]] = '4';
+				}
 
 				x[i] = newx[i];
 				y[i] = newy[i];
@@ -89,16 +117,24 @@ public:
 				TileMap[y[i]][x[i]] = 'B';
 
 				if (i == 0)
+				{
 					TileMap[newy[i]][newx[i]] = '1';
+				}
 
 				if (i == 1)
+				{
 					TileMap[newy[i]][newx[i]] = '2';
+				}
 
 				if (i == 2)
+				{
 					TileMap[newy[i]][newx[i]] = '3';
+				}
 
 				if (i == 3)
+				{
 					TileMap[newy[i]][newx[i]] = '4';
+				}
 
 				x[i] = newx[i];
 				y[i] = newy[i];
