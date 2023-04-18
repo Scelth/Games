@@ -37,7 +37,7 @@ int main()
 				window.close();
 			}
 
-			if (q < 171 && life)
+			if (q < 189 && life)
 			{
 				if (event.type == Event::KeyPressed)
 				{
@@ -67,7 +67,7 @@ int main()
 			}
 		}
 
-		if (q < 171 && life)
+		if (q < 189 && life)
 		{
 			p.update();
 			en.update();
@@ -124,7 +124,7 @@ int main()
 			}
 		}
 
-		if (q == 171)
+		if (q == 189)
 		{
 			window.draw(youwin);
 		}
