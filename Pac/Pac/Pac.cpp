@@ -11,16 +11,16 @@ int main()
 	RenderWindow window(VideoMode(W * ts, H * ts), "Pacman");
 
 	Texture t;
-	t.loadFromFile("Paint/title.png");
+	t.loadFromFile("Image/title.png");
 	Sprite plat(t);
 
 	Texture yw;
-	yw.loadFromFile("Paint/youwin.png");
+	yw.loadFromFile("Image/youwin.png");
 	Sprite youwin(yw);
 	youwin.setPosition(100, 210);
 
 	Texture yl;
-	yl.loadFromFile("Paint/youlose.png");
+	yl.loadFromFile("Image/youlose.png");
 	Sprite youlose(yl);
 	youlose.setPosition(100, 210);
 
