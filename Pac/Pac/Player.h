@@ -27,7 +27,7 @@ public:
 			switch (rotate)
 			{
 			case 1:
-				if (TileMap[y][newx + 1] != 'A')
+				if (Map[y][newx + 1] != 'A')
 				{
 					newx += 1;
 				}
@@ -35,7 +35,7 @@ public:
 				break;
 
 			case 2:
-				if (TileMap[y][newx - 1] != 'A')
+				if (Map[y][newx - 1] != 'A')
 				{
 					newx -= 1;
 				}
@@ -43,7 +43,7 @@ public:
 				break;
 
 			case 3:
-				if (TileMap[newy - 1][x] != 'A')
+				if (Map[newy - 1][x] != 'A')
 				{
 					newy -= 1;
 				}
@@ -51,7 +51,7 @@ public:
 				break;
 
 			case 4:
-				if (TileMap[newy + 1][x] != 'A')
+				if (Map[newy + 1][x] != 'A')
 				{
 					newy += 1;
 				}
@@ -62,21 +62,21 @@ public:
 			ti = 0;
 		}
 
-		if (TileMap[newy][newx] == ' ' || TileMap[newy][newx] == 'B')
+		if (Map[newy][newx] == ' ' || Map[newy][newx] == 'B')
 		{
-			if (TileMap[newy][newx] == ' ')
+			if (Map[newy][newx] == ' ')
 			{
 				q++;
 			}
 
-			if (TileMap[newy][newx] == '1' || TileMap[newy][newx] == '2' || TileMap[newy][newx] == '3' || TileMap[newy][newx] == '4')
+			if (Map[newy][newx] == '1' || Map[newy][newx] == '2' || Map[newy][newx] == '3' || Map[newy][newx] == '4')
 			{
-				life = false;
+				Life = false;
 			}
 
-			TileMap[y][x] = 'B';
+			Map[y][x] = 'B';
 
-			TileMap[newy][newx] = 'C';
+			Map[newy][newx] = 'C';
 
 			x = newx;
 			y = newy;
@@ -94,8 +94,8 @@ public:
 				newx = 1;
 			}
 
-			TileMap[y][x] = 'B';
-			TileMap[newy][newx] = 'C';
+			Map[y][x] = 'B';
+			Map[newy][newx] = 'C';
 
 			x = newx;
 			y = newy;

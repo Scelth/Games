@@ -27,7 +27,7 @@ public:
 				switch (rotate[i])
 				{
 				case 1:
-					if (TileMap[y[i]][newx[i] + 1] != 'A')
+					if (Map[y[i]][newx[i] + 1] != 'A')
 					{
 						newx[i] += 1;
 					}
@@ -35,7 +35,7 @@ public:
 					break;
 
 				case 2:
-					if (TileMap[y[i]][newx[i] - 1] != 'A')
+					if (Map[y[i]][newx[i] - 1] != 'A')
 					{
 						newx[i] -= 1;
 					}
@@ -43,7 +43,7 @@ public:
 					break;
 
 				case 3:
-					if (TileMap[newy[i] - 1][x[i]] != 'A')
+					if (Map[newy[i] - 1][x[i]] != 'A')
 					{
 						newy[i] -= 1;
 					}
@@ -51,7 +51,7 @@ public:
 					break;
 
 				case 4:
-					if (TileMap[newy[i] + 1][x[i]] != 'A')
+					if (Map[newy[i] + 1][x[i]] != 'A')
 					{
 						newy[i] += 1;
 					}
@@ -65,41 +65,41 @@ public:
 
 		for (int i = 0; i < 4; i++) 
 		{
-			if (TileMap[newy[i]][newx[i]] == ' ' || TileMap[newy[i]][newx[i]] == 'B' || TileMap[newy[i]][newx[i]] == 'C')
+			if (Map[newy[i]][newx[i]] == ' ' || Map[newy[i]][newx[i]] == 'B' || Map[newy[i]][newx[i]] == 'C')
 			{
-				if (TileMap[newy[i]][newx[i]] == 'B')
+				if (Map[newy[i]][newx[i]] == 'B')
 				{
-					TileMap[y[i]][x[i]] = 'B';
+					Map[y[i]][x[i]] = 'B';
 				}
 
-				else if (TileMap[newy[i]][newx[i]] == ' ')
+				else if (Map[newy[i]][newx[i]] == ' ')
 				{
-					TileMap[y[i]][x[i]] = ' ';
+					Map[y[i]][x[i]] = ' ';
 				}
 
-				else if (TileMap[newy[i]][newx[i]] == 'C')
+				else if (Map[newy[i]][newx[i]] == 'C')
 				{ 
-					life = false;
+					Life = false;
 				}
 
 				if (i == 0)
 				{
-					TileMap[newy[i]][newx[i]] = '1';
+					Map[newy[i]][newx[i]] = '1';
 				}
 
 				if (i == 1)
 				{ 
-					TileMap[newy[i]][newx[i]] = '2';
+					Map[newy[i]][newx[i]] = '2';
 				}
 
 				if (i == 2)
 				{
-					TileMap[newy[i]][newx[i]] = '3';
+					Map[newy[i]][newx[i]] = '3';
 				}
 
 				if (i == 3)
 				{
-					TileMap[newy[i]][newx[i]] = '4';
+					Map[newy[i]][newx[i]] = '4';
 				}
 
 				x[i] = newx[i];
@@ -114,26 +114,26 @@ public:
 				else
 					newx[i] = 1;
 
-				TileMap[y[i]][x[i]] = 'B';
+				Map[y[i]][x[i]] = 'B';
 
 				if (i == 0)
 				{
-					TileMap[newy[i]][newx[i]] = '1';
+					Map[newy[i]][newx[i]] = '1';
 				}
 
 				if (i == 1)
 				{
-					TileMap[newy[i]][newx[i]] = '2';
+					Map[newy[i]][newx[i]] = '2';
 				}
 
 				if (i == 2)
 				{
-					TileMap[newy[i]][newx[i]] = '3';
+					Map[newy[i]][newx[i]] = '3';
 				}
 
 				if (i == 3)
 				{
-					TileMap[newy[i]][newx[i]] = '4';
+					Map[newy[i]][newx[i]] = '4';
 				}
 
 				x[i] = newx[i];

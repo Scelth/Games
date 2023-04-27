@@ -8,7 +8,7 @@
 int main()
 {
 	srand(time(0));
-	RenderWindow window(VideoMode(W * ts, H * ts), "Pacman");
+	RenderWindow window(VideoMode(W * Split, H * Split), "Pacman");
 
 	Texture t;
 	t.loadFromFile("Image/title.png");
@@ -37,7 +37,7 @@ int main()
 				window.close();
 			}
 
-			if (q < 189 && life)
+			if (q < 189 && Life)
 			{
 				if (event.type == Event::KeyPressed)
 				{
@@ -67,7 +67,7 @@ int main()
 			}
 		}
 
-		if (q < 189 && life)
+		if (q < 189 && Life)
 		{
 			p.update();
 			en.update();
@@ -79,47 +79,47 @@ int main()
 		{
 			for (int j = 0; j < W; j++)
 			{
-				if (TileMap[i][j] == 'A')
+				if (Map[i][j] == 'A')
 				{
-					plat.setTextureRect(IntRect(0, 0, ts, ts));
+					plat.setTextureRect(IntRect(0, 0, Split, Split));
 				}
 
-				if (TileMap[i][j] == 'C')
+				if (Map[i][j] == 'C')
 				{
-					plat.setTextureRect(IntRect(ts * int(p.frame), ts * p.rotate, ts, ts));
+					plat.setTextureRect(IntRect(Split * int(p.frame), Split * p.rotate, Split, Split));
 				}
 
-				if (TileMap[i][j] == ' ')
+				if (Map[i][j] == ' ')
 				{
-					plat.setTextureRect(IntRect(ts, 0, ts, ts));
+					plat.setTextureRect(IntRect(Split, 0, Split, Split));
 				}
 
-				if (TileMap[i][j] == '1')
+				if (Map[i][j] == '1')
 				{
-					plat.setTextureRect(IntRect(ts * 5, ts * en.rotate[0], ts, ts));
+					plat.setTextureRect(IntRect(Split * 5, Split * en.rotate[0], Split, Split));
 				}
 
-				if (TileMap[i][j] == '2')
+				if (Map[i][j] == '2')
 				{
-					plat.setTextureRect(IntRect(ts * 5, ts * en.rotate[1], ts, ts));
+					plat.setTextureRect(IntRect(Split * 5, Split * en.rotate[1], Split, Split));
 				}
 
-				if (TileMap[i][j] == '3')
+				if (Map[i][j] == '3')
 				{
-					plat.setTextureRect(IntRect(ts * 5, ts * en.rotate[2], ts, ts));
+					plat.setTextureRect(IntRect(Split * 5, Split * en.rotate[2], Split, Split));
 				}
 
-				if (TileMap[i][j] == '4')
+				if (Map[i][j] == '4')
 				{
-					plat.setTextureRect(IntRect(ts * 5, ts * en.rotate[3], ts, ts));
+					plat.setTextureRect(IntRect(Split * 5, Split * en.rotate[3], Split, Split));
 				}
 
-				if (TileMap[i][j] == 'B')
+				if (Map[i][j] == 'B')
 				{
 					continue;
 				}
 
-				plat.setPosition(j * ts, i * ts);
+				plat.setPosition(j * Split, i * Split);
 				window.draw(plat);
 			}
 		}
@@ -129,7 +129,7 @@ int main()
 			window.draw(youwin);
 		}
 
-		if (!life)
+		if (!Life)
 		{
 			window.draw(youlose);
 		}

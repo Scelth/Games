@@ -1,10 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <time.h>
 #include "Global.h"
 using namespace sf;
 
-String TileMap[H] =
+String Map[H] =
 {
 	"AAAAAAAAAAAAAAAAAAA",
 	"A1       A       2A",
