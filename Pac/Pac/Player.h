@@ -9,96 +9,110 @@ class Player
 public:
 	float frame = 0;
 	int x = 9, y = 15;
-	int newx = 0, newy = 0;
-	int rotate = 1, ti = 0;
+	int NewX = 0, NewY = 0;
+	int Rotate = 1, ti = 0;
+	bool tp = false;
 
-	void update()
+	void Update()
 	{
-		frame += 0.01;
-		if (frame > 5)
+		if (tp) 
 		{
-			frame -= 5;
+			Map[y][x] = ' ';
+
+			x = 9;
+			y = 15;
+
+			Map[y][x] = 'C';
+
+			NewX = x;
+			NewY = y;
+
+			tp = false;
 		}
 
-		ti++;
-
-		if (ti >= 300)
+		else
 		{
-			switch (rotate)
+			frame += 0.01;
+			if (frame > 5)
 			{
-			case 1:
-				if (Map[y][newx + 1] != 'A')
-				{
-					newx += 1;
-				}
-
-				break;
-
-			case 2:
-				if (Map[y][newx - 1] != 'A')
-				{
-					newx -= 1;
-				}
-
-				break;
-
-			case 3:
-				if (Map[newy - 1][x] != 'A')
-				{
-					newy -= 1;
-				}
-
-				break;
-
-			case 4:
-				if (Map[newy + 1][x] != 'A')
-				{
-					newy += 1;
-				}
-
-				break;
+				frame -= 5;
 			}
 
-			ti = 0;
+			ti++;
+
+			if (ti >= 300)
+			{
+				switch (Rotate)
+				{
+				case 1:
+					if (Map[y][NewX + 1] != 'A')
+					{
+						NewX += 1;
+					}
+
+					break;
+
+				case 2:
+					if (Map[y][NewX - 1] != 'A')
+					{
+						NewX -= 1;
+					}
+
+					break;
+
+				case 3:
+					if (Map[NewY - 1][x] != 'A')
+					{
+						NewY -= 1;
+					}
+
+					break;
+
+				case 4:
+					if (Map[NewY + 1][x] != 'A')
+					{
+						NewY += 1;
+					}
+
+					break;
+				}
+
+				ti = 0;
+			}
 		}
 
-		if (Map[newy][newx] == ' ' || Map[newy][newx] == 'B')
+		if ((Map[NewY][NewX] == ' ' || Map[NewY][NewX] == 'S' || Map[NewY][NewX] == 'B')) 
 		{
-			if (Map[newy][newx] == ' ')
+			if (Map[NewY][NewX] == ' ' || Map[NewY][NewX] == 'S')
 			{
 				q++;
 			}
 
-			if (Map[newy][newx] == '1' || Map[newy][newx] == '2' || Map[newy][newx] == '3' || Map[newy][newx] == '4')
-			{
-				Life = false;
-			}
-
 			Map[y][x] = 'B';
 
-			Map[newy][newx] = 'C';
+			Map[NewY][NewX] = 'C';
 
-			x = newx;
-			y = newy;
+			x = NewX;
+			y = NewY;
 		}
 
-		if (newy == 9 && (newx == 0 || newx == 18))
+		if (NewY == 9 && (NewX == 0 || NewX == 18))
 		{
-			if (newx == 0)
+			if (NewX == 0)
 			{
-				newx = 17;
+				NewX = 17;
 			}
 
 			else
 			{
-				newx = 1;
+				NewX = 1;
 			}
 
 			Map[y][x] = 'B';
-			Map[newy][newx] = 'C';
+			Map[NewY][NewX] = 'C';
 
-			x = newx;
-			y = newy;
+			x = NewX;
+			y = NewY;
 		}
 	}
 };

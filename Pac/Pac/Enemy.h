@@ -9,135 +9,168 @@ class Enemy
 {
 public:
 	int x[4] = { 1, 17 , 1, 17 }, y[4] = { 1, 1, 19, 19 };
-	int newx[4] = { 0 , 0 , 0, 0 }, newy[4] = { 0, 0, 0, 0 };
-	int rotate[4] = { 1, 1, 1, 1 }, ti = 0;
+	int NewX[4] = { 0 , 0 , 0, 0 }, NewY[4] = { 0, 0, 0, 0 };
+	int Rotate[4] = { 1, 1, 1, 1 }, ti = 0;
+	bool tp = false;
 
-	void update() {
-		ti++;
+	void Update()
+	{
 
-		if (ti >= 300) 
+		if (tp)
 		{
 			for (int i = 0; i < 4; i++)
 			{
-				rotate[i] = rand() % 4 + 1;
-
-				newx[i] = x[i];
-				newy[i] = y[i];
-
-				switch (rotate[i])
-				{
-				case 1:
-					if (Map[y[i]][newx[i] + 1] != 'A')
-					{
-						newx[i] += 1;
-					}
-
-					break;
-
-				case 2:
-					if (Map[y[i]][newx[i] - 1] != 'A')
-					{
-						newx[i] -= 1;
-					}
-
-					break;
-
-				case 3:
-					if (Map[newy[i] - 1][x[i]] != 'A')
-					{
-						newy[i] -= 1;
-					}
-
-					break;
-
-				case 4:
-					if (Map[newy[i] + 1][x[i]] != 'A')
-					{
-						newy[i] += 1;
-					}
-
-					break;
-				}
+				Map[y[i]][x[i]] = ' ';
 			}
 
-			ti = 0;
+			x[0] = 1; x[1] = 17; x[2] = 1; x[3] = 17;
+			y[0] = 1; y[1] = 1; y[2] = 19; y[3] = 19;
+
+			Map[y[0]][x[0]] = '1';
+			Map[y[1]][x[1]] = '2';
+			Map[y[2]][x[2]] = '3';
+			Map[y[3]][x[3]] = '4';
+
+			for (int i = 0; i < 4; i++) {
+				NewX[i] = x[i];
+				NewY[i] = y[i];
+			}
+
+			tp = false;
 		}
 
-		for (int i = 0; i < 4; i++) 
+		else
 		{
-			if (Map[newy[i]][newx[i]] == ' ' || Map[newy[i]][newx[i]] == 'B' || Map[newy[i]][newx[i]] == 'C')
+			ti++;
+
+			if (ti >= 300)
 			{
-				if (Map[newy[i]][newx[i]] == 'B')
+				for (int i = 0; i < 4; i++)
+				{
+					Rotate[i] = rand() % 4 + 1;
+
+					NewX[i] = x[i];
+					NewY[i] = y[i];
+
+					switch (Rotate[i])
+					{
+					case 1:
+						if (Map[y[i]][NewX[i] + 1] != 'A')
+						{
+							NewX[i] += 1;
+						}
+
+						break;
+
+					case 2:
+						if (Map[y[i]][NewX[i] - 1] != 'A')
+						{
+							NewX[i] -= 1;
+						}
+
+						break;
+
+					case 3:
+						if (Map[NewY[i] - 1][x[i]] != 'A')
+						{
+							NewY[i] -= 1;
+						}
+
+						break;
+
+					case 4:
+						if (Map[NewY[i] + 1][x[i]] != 'A')
+						{
+							NewY[i] += 1;
+						}
+
+						break;
+					}
+				}
+
+				ti = 0;
+			}
+		}
+
+		for (int i = 0; i < 4; i++)
+		{
+			if (Map[NewY[i]][NewX[i]] == ' ' || Map[NewY[i]][NewX[i]] == 'B' || Map[NewY[i]][NewX[i]] == 'C')
+			{
+				if (Map[NewY[i]][NewX[i]] == 'B')
 				{
 					Map[y[i]][x[i]] = 'B';
 				}
 
-				else if (Map[newy[i]][newx[i]] == ' ')
+				else if (Map[NewY[i]][NewX[i]] == ' ')
 				{
 					Map[y[i]][x[i]] = ' ';
 				}
 
-				else if (Map[newy[i]][newx[i]] == 'C')
-				{ 
+				else if (Map[NewY[i]][NewX[i]] == 'C')
+				{
 					Life = false;
 				}
 
 				if (i == 0)
 				{
-					Map[newy[i]][newx[i]] = '1';
+					Map[NewY[i]][NewX[i]] = '1';
 				}
 
 				if (i == 1)
-				{ 
-					Map[newy[i]][newx[i]] = '2';
+				{
+					Map[NewY[i]][NewX[i]] = '2';
 				}
 
 				if (i == 2)
 				{
-					Map[newy[i]][newx[i]] = '3';
+					Map[NewY[i]][NewX[i]] = '3';
 				}
 
 				if (i == 3)
 				{
-					Map[newy[i]][newx[i]] = '4';
+					Map[NewY[i]][NewX[i]] = '4';
 				}
 
-				x[i] = newx[i];
-				y[i] = newy[i];
+				x[i] = NewX[i];
+				y[i] = NewY[i];
 			}
 
-			if (newy[i] == 9 && (newx[i] == 0 || newx[i] == 18))
+			if (NewY[i] == 9 && (NewX[i] == 0 || NewX[i] == 18))
 			{
-				if (newx[i] == 0)
-					newx[i] = 17;
+				if (NewX[i] == 0)
+				{
+					NewX[i] = 17;
+				}
 
 				else
-					newx[i] = 1;
+				{
+					NewX[i] = 1;
+				}
 
 				Map[y[i]][x[i]] = 'B';
 
 				if (i == 0)
 				{
-					Map[newy[i]][newx[i]] = '1';
+					Map[NewY[i]][NewX[i]] = '1';
 				}
 
 				if (i == 1)
 				{
-					Map[newy[i]][newx[i]] = '2';
+					Map[NewY[i]][NewX[i]] = '2';
 				}
 
 				if (i == 2)
 				{
-					Map[newy[i]][newx[i]] = '3';
+					Map[NewY[i]][NewX[i]] = '3';
 				}
 
 				if (i == 3)
 				{
-					Map[newy[i]][newx[i]] = '4';
+					Map[NewY[i]][NewX[i]] = '4';
 				}
 
-				x[i] = newx[i];
-				y[i] = newy[i];
+				x[i] = NewX[i];
+				y[i] = NewY[i];
 			}
 		}
 	}

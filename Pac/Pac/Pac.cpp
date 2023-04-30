@@ -4,11 +4,18 @@
 #include "Map.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Score.h"
 
 int main()
 {
 	srand(time(0));
-	RenderWindow window(VideoMode(W * Split, H * Split), "Pacman");
+	RenderWindow window(VideoMode(W * Split, H * Split + 3 * Split), "Pac-man!");
+
+	Image icon;
+	icon.loadFromFile("Image/logo.png");
+	const Uint8* pixels = icon.getPixelsPtr();
+	//window.setIcon(icon.getSize().x, icon.getSize().y, pixels);
+
 
 	Texture t;
 	t.loadFromFile("Image/title.png");
@@ -24,6 +31,10 @@ int main()
 	Sprite youlose(yl);
 	youlose.setPosition(100, 210);
 
+	Texture sc;
+	sc.loadFromFile("Image/score.png");
+	Score score(sc);
+
 	Player p;
 	Enemy en;
 
@@ -37,42 +48,85 @@ int main()
 				window.close();
 			}
 
-			if (q < 189 && Life)
+			if (q < 194 && Life)
 			{
 				if (event.type == Event::KeyPressed)
 				{
-					p.newx = p.x;
-					p.newy = p.y;
+					p.NewX = p.x;
+					p.NewY = p.y;
 
 					if (event.key.code == Keyboard::Right)
 					{
-						p.rotate = 1;
+						p.Rotate = 1;
 					}
 
 					if (event.key.code == Keyboard::Left)
 					{
-						p.rotate = 2;
+						p.Rotate = 2;
 					}
 
 					if (event.key.code == Keyboard::Up)
 					{
-						p.rotate = 3;
+						p.Rotate = 3;
 					}
 
 					if (event.key.code == Keyboard::Down)
 					{
-						p.rotate = 4;
+						p.Rotate = 4;
 					}
 				}
 			}
 		}
 
-		if (q < 189 && Life)
+		if ((q == 194 || !Life) && RestartTime != 0) 
 		{
-			p.update();
-			en.update();
+			RestartTime--;
+
+			if (RestartTime == 0) 
+			{
+				for (int i = 0; i < H; i++)
+				{
+					for (int j = 0; j < W; j++)
+					{
+						if (Map[i][j] == 'B')
+						{
+							Map[i][j] = ' ';
+						}
+					}
+				}
+
+				p.tp = true;
+				en.tp = true;
+
+				q = 0;
+				Life = true;
+				RestartTime = 5000;
+			}
 		}
 
+		score.c = q;
+
+		if (!Life) 
+		{
+			for (int i = 0; i < H; i++)
+			{
+				for (int j = 0; j < W; j++)
+				{
+					if (Map[i][j] != 'A')
+					{
+						Map[i][j] = 'B';
+					}
+				}
+			}
+		}
+
+		if (q < 194 && Life)
+		{
+			p.Update();
+			en.Update();
+		}
+
+		score.Update();
 		window.clear(Color::Black);
 
 		for (int i = 0; i < H; i++)
@@ -86,7 +140,7 @@ int main()
 
 				if (Map[i][j] == 'C')
 				{
-					plat.setTextureRect(IntRect(Split * int(p.frame), Split * p.rotate, Split, Split));
+					plat.setTextureRect(IntRect(Split * int(p.frame), Split * p.Rotate, Split, Split));
 				}
 
 				if (Map[i][j] == ' ')
@@ -96,22 +150,22 @@ int main()
 
 				if (Map[i][j] == '1')
 				{
-					plat.setTextureRect(IntRect(Split * 5, Split * en.rotate[0], Split, Split));
+					plat.setTextureRect(IntRect(Split * 5, Split * en.Rotate[0], Split, Split));
 				}
 
 				if (Map[i][j] == '2')
 				{
-					plat.setTextureRect(IntRect(Split * 5, Split * en.rotate[1], Split, Split));
+					plat.setTextureRect(IntRect(Split * 5, Split * en.Rotate[1], Split, Split));
 				}
 
 				if (Map[i][j] == '3')
 				{
-					plat.setTextureRect(IntRect(Split * 5, Split * en.rotate[2], Split, Split));
+					plat.setTextureRect(IntRect(Split * 5, Split * en.Rotate[2], Split, Split));
 				}
 
 				if (Map[i][j] == '4')
 				{
-					plat.setTextureRect(IntRect(Split * 5, Split * en.rotate[3], Split, Split));
+					plat.setTextureRect(IntRect(Split * 5, Split * en.Rotate[3], Split, Split));
 				}
 
 				if (Map[i][j] == 'B')
@@ -124,7 +178,7 @@ int main()
 			}
 		}
 
-		if (q == 189)
+		if (q == 194)
 		{
 			window.draw(youwin);
 		}
@@ -132,6 +186,14 @@ int main()
 		if (!Life)
 		{
 			window.draw(youlose);
+		}
+
+		for (int i = 0; i < 3; i++)
+		{
+			if (score.vid[i])
+			{
+				window.draw(score.sec[i]);
+			}
 		}
 
 		window.display();
