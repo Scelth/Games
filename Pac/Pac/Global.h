@@ -1,6 +1,4 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-using namespace sf;
 
 const int H = 21;
 const int W = 19;

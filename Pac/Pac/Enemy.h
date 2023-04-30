@@ -3,7 +3,6 @@
 #include <time.h>
 #include "Global.h"
 #include "Map.h"
-#include "Player.h"
 
 class Enemy
 {
