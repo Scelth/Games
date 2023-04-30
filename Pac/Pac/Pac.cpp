@@ -95,8 +95,8 @@ int main()
 					}
 				}
 
-				p.tp = true;
-				en.tp = true;
+				p.Restart = true;
+				en.Restart = true;
 
 				q = 0;
 				Life = true;

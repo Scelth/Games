@@ -10,12 +10,12 @@ public:
 	float frame = 0;
 	int x = 9, y = 15;
 	int NewX = 0, NewY = 0;
-	int Rotate = 1, ti = 0;
-	bool tp = false;
+	int Rotate = 1, Time = 0;
+	bool Restart = false;
 
 	void Update()
 	{
-		if (tp) 
+		if (Restart) 
 		{
 			Map[y][x] = ' ';
 
@@ -27,7 +27,7 @@ public:
 			NewX = x;
 			NewY = y;
 
-			tp = false;
+			Restart = false;
 		}
 
 		else
@@ -38,9 +38,9 @@ public:
 				frame -= 5;
 			}
 
-			ti++;
+			Time++;
 
-			if (ti >= 300)
+			if (Time >= 300)
 			{
 				switch (Rotate)
 				{
@@ -77,13 +77,13 @@ public:
 					break;
 				}
 
-				ti = 0;
+				Time = 0;
 			}
 		}
 
-		if ((Map[NewY][NewX] == ' ' || Map[NewY][NewX] == 'S' || Map[NewY][NewX] == 'B')) 
+		if ((Map[NewY][NewX] == ' ' || Map[NewY][NewX] == 'B')) 
 		{
-			if (Map[NewY][NewX] == ' ' || Map[NewY][NewX] == 'S')
+			if (Map[NewY][NewX] == ' ')
 			{
 				q++;
 			}

@@ -10,13 +10,13 @@ class Enemy
 public:
 	int x[4] = { 1, 17 , 1, 17 }, y[4] = { 1, 1, 19, 19 };
 	int NewX[4] = { 0 , 0 , 0, 0 }, NewY[4] = { 0, 0, 0, 0 };
-	int Rotate[4] = { 1, 1, 1, 1 }, ti = 0;
-	bool tp = false;
+	int Rotate[4] = { 1, 1, 1, 1 }, Time = 0;
+	bool Restart = false;
 
 	void Update()
 	{
 
-		if (tp)
+		if (Restart)
 		{
 			for (int i = 0; i < 4; i++)
 			{
@@ -36,14 +36,14 @@ public:
 				NewY[i] = y[i];
 			}
 
-			tp = false;
+			Restart = false;
 		}
 
 		else
 		{
-			ti++;
+			Time++;
 
-			if (ti >= 300)
+			if (Time >= 300)
 			{
 				for (int i = 0; i < 4; i++)
 				{
@@ -88,7 +88,7 @@ public:
 					}
 				}
 
-				ti = 0;
+				Time = 0;
 			}
 		}
 
