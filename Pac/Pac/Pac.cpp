@@ -14,7 +14,7 @@ int main()
 	Image icon;
 	icon.loadFromFile("Image/logo.png");
 	const Uint8* pixels = icon.getPixelsPtr();
-	//window.setIcon(icon.getSize().x, icon.getSize().y, pixels);
+	window.setIcon(icon.getSize().x, icon.getSize().y, pixels);
 
 
 	Texture t;
